@@ -11,13 +11,32 @@ from catalyst_ai.app.state import init_session_state
 
 
 def main() -> None:
-    st.set_page_config(page_title="Catalyst.AI", page_icon="🧪", layout="wide")
+    st.set_page_config(
+        page_title="Cognizant® Domain-Specific Development Lifecycle Transformation (Catalyst.AI Edition)",
+        page_icon="🧪",
+        layout="wide",
+    )
     init_session_state()
 
-    st.sidebar.title("Catalyst.AI")
+    st.sidebar.markdown(
+        """
+        <div style='font-size:14px; font-family: Arial, sans-serif; margin-bottom: 10px;'>
+            <b>Cognizant® Domain-Specific Development Lifecycle Transformation (Catalyst.AI Edition)</b><br>
+            <span style='font-size:12px; color:gray;'>Previously: <i>Engineering Companion</i></span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     persona = st.sidebar.selectbox(
-        "Persona",
-        options=["Study Lead", "Clinical Ops", "Data Management", "Vendor Manager", "Executive"],
+        "Select SDLC Persona",
+        options=[
+            "Business Analyst",
+            "Developer",
+            "Tester",
+            "Project Manager",
+            "Architect",
+        ],
         index=0,
     )
     st.session_state["persona"] = persona
@@ -30,7 +49,7 @@ def main() -> None:
             "Risk Register",
             "Meeting Pack Generator",
             "Actions & Decisions",
-            "Artifacts (Requirements/Design/Sprint/CI/CD)",
+            "SDLC Agents",
         ],
         index=0,
     )
@@ -45,10 +64,9 @@ def main() -> None:
         meeting_pack.render()
     elif page == "Actions & Decisions":
         actions_decisions.render()
-    else:
-        from catalyst_ai.app.pages import artifacts
-
-        artifacts.render()
+    elif page == "SDLC Agents":
+        from catalyst_ai.app.pages.artifacts import render_sdlc_agents
+        render_sdlc_agents()
 
 
 if __name__ == "__main__":

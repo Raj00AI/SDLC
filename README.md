@@ -17,3 +17,21 @@ Generated packs are written to `.artifacts/`.
 
 ## Tests
 - `.\.venv\Scripts\python.exe -m pytest -q`
+
+## Agentic SDLC Accelerator (LLM-backed)
+The app includes an SDLC Accelerator that runs **Discover → Define → Grade/Iterate → Design → Plan** using an LLM.
+
+### Configure the LLM
+Set environment variables before starting Streamlit:
+- `CATALYST_LLM_API_KEY` (required)
+- `CATALYST_LLM_BASE_URL` (optional; defaults to `https://api.openai.com/v1`)
+- `CATALYST_LLM_MODEL` (optional; defaults to `gpt-4.1-mini`)
+
+### Run
+In the UI, open **Artifacts (Requirements/Design/Sprint/CI/CD)** → **SDLC Accelerator (Agents)** and click **Run agent pipeline and generate artifacts**.
+Generated files will be written to `.artifacts/` as:
+- `agent-discover.md`
+- `agent-define.md`
+- `agent-design.md`
+- `agent-plan.md`
+- `agent-scorecards.json`
